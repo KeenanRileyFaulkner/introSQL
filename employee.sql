@@ -14,7 +14,13 @@ FROM employee;
 -- Find everyone that reports to Nancy Edwards
 SELECT *
 FROM employee
-WHERE reports_to = 2;
+WHERE reports_to IN
+(
+    SELECT employee_id
+    FROM employee
+    WHERE first_name = 'Nancy'
+    AND last_name = 'Edwards'
+);
 
 -- Count how many amployees live in Lethbridge
 SELECT COUNT(*)
